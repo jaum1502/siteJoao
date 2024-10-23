@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .container {
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .src {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border: solid 0 0 20px #ff00d4, 0 0 40px #000000, 0 0 60px #00FF00;
+            box-shadow: 0 0 20px #f100c9, 0 0 40px #ff00d4, 0 0 600px #cf00cf;
+            filter: drop-shadow(0 0 10px #f500e9);
+            border-radius: 2vh;
+        }
+
+        .teste {
+            position: absolute;
+            width: 10vw;
+            height: 45px;
+            border-radius: 25px;
+            background-color: rgb(224, 55, 247);
+            border: none;
+            font-size: 16px;
+            top: 61%;
+            left: 51%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            font-family: "Rubik Glitch", system-ui;
+            font-weight: 100;
+            font-style: normal;
+            font-size: 20px;
+            color: white;
+            box-shadow: 0 0 20px #f100c9, 0 0 40px #ff00d4, 0 0 600px #cf00cf;
+        }
+
+        .novoBotao {
+            position: absolute;
+            width: 10vw;
+            height: 45px;
+            border-radius: 25px;
+            background-color: rgb(224, 55, 247);
+            border: none;
+            font-size: 16px;
+            top: 83%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            font-family: "Rubik Glitch", system-ui;
+            font-weight: 100;
+            font-style: normal;
+            font-size: 20px;
+            color: white;
+            box-shadow: 0 0 20px #f100c9, 0 0 40px #ff00d4, 0 0 600px #cf00cf;
+        }
+
+        .text-overlay {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 18px;
+            position: absolute;
+            white-space: nowrap;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img id="image" src="1_atv_detectada.jpg" alt="" class="src">
+        <button id="relatorioBtn" class="teste" onclick="changeImage()">RELATÓRIO</button>
+    </div>
+    <script>
+        function createRandomText() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+=-';
+            const textLength = Math.floor(Math.random() * 15) + 5;
+            let randomText = '';
+
+            for (let i = 0; i < textLength; i++) {
+                randomText += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return randomText;
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+
+        function getRandomOpacity() {
+            return Math.random().toFixed(2);
+        }
+
+        function generateRandomTextElement() {
+            const textElement = document.createElement('div');
+            textElement.classList.add('text-overlay');
+            textElement.innerText = createRandomText();
+
+            textElement.style.top = Math.random() * 100 + 'vh';
+            textElement.style.left = Math.random() * 100 + 'vw';
+            textElement.style.color = getRandomColor();
+            textElement.style.opacity = getRandomOpacity();
+            textElement.style.position = 'absolute';
+            textElement.style.zIndex = 1;
+            textElement.style.fontSize = '20px';
+            textElement.style.pointerEvents = 'none';
+
+            document.body.appendChild(textElement);
+
+            setTimeout(() => {
+                textElement.remove();
+            }, 500);
+        }
+
+        function startInfiniteTextGeneration() {
+            setInterval(generateRandomTextElement, 2);
+        }
+
+        startInfiniteTextGeneration();
+
+        function changeImage() {
+            var image = document.getElementById('image');
+            var button = document.getElementById('relatorioBtn');
+
+            image.src = '2_atv_detectada.jpg';
+            button.style.display = 'none';
+
+            var newButton = document.createElement("button");
+            newButton.classList.add('novoBotao');
+            newButton.innerHTML = 'ACEITAR MISSÃO';
+
+            newButton.onclick = function () {
+                image.src = '3_atv_detectada.jpg';
+                newButton.style.display = 'none';
+            };
+
+            document.querySelector('.container').appendChild(newButton);
+        }
+    </script>
+
+</body>
+
+</html>
