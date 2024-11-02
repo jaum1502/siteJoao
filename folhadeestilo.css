@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    height: 90%;    
+    height: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +26,7 @@ body {
     max-width: 100%;
     object-fit: contain;
     border: solid 0 0 20px #ff00d4, 0 0 40px #000000, 0 0 60px #00FF00;
-    box-shadow: 0 0 20px #f100c9, 0 0 40px #ff00d4, 0 0 600px #cf00cf;
+    box-shadow: 0 0 20px #f100c9, 0 0 40px #ff00d4, 0 0 200px #cf00cf;
     filter: drop-shadow(0 0 10px #f500e9);
     border-radius: 2vh;
 }
